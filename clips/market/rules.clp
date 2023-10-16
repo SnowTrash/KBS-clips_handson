@@ -42,7 +42,7 @@
 (defrule cust-5-prods
    (customer (customer-id ?id) (name ?cn))
    (order (order-number ?order) (customer-id ?id))
-   (line-item (order-number ?order) (part-number ?part) {quantity > 5})
+   (line-item (order-number ?order) (part-number ?part) (quantity ?q&:(> ?q 5)))
    (product (part-number ?part) (name ?pn))
    =>
    (printout t ?cn " bought more than 5 products (" ?pn ")" crlf))
@@ -52,16 +52,16 @@
 (defrule text-cust (customer (customer-id ?cid) (name ?name) (phone ?phone))
                    (not (order (order-number ?order) (customer-id ?cid)))
 =>
-(assert (text-customer ?name ?phone "tienes 25% desc prox compra"))
-(printout t ?name " 3313073905 tienes 25% desc prox compra" ))
+(assert (text-customer ?name ?phone "tienes 25% desc prox compra" crlf))
+(printout t ?name " 3313073905 tienes 25% desc prox compra msj "))
 
 
 ;; Define a rule for calling  custormers who have not bought ...
 (defrule call-cust (customer (customer-id ?cid) (name ?name) (phone ?phone))
                    (not (order (order-number ?order) (customer-id ?cid)))
 =>
-(assert (call-customer ?name ?phone "tienes 25% desc prox compra"))
-(printout t ?name " 3313073905 tienes 25% desc prox compra" ))
+(assert (call-customer ?name ?phone "tienes 25% desc prox compra" crlf))
+(printout t ?name " 3313073905 tienes 25% desc prox compra llamada" crlf))
 
 
 

@@ -17,5 +17,3 @@
 ;;CLIPS> (reset)
 ;;CLIPS> (run)
 
-
-
