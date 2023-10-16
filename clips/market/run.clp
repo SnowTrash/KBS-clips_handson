@@ -17,3 +17,20 @@
 ;;CLIPS> (reset)
 ;;CLIPS> (run)
 
+
+;; (load ../KBS-clips_handson/clips/market/templates.clp)
+;; (load ../KBS-clips_handson/clips/market/facts.clp)
+;; (load ../KBS-clips_handson/clips/market/rules.clp)
+
+;; found this next projects and maybe deserve a look
+
+;; https://github.com/ireneguerra/clipspy
+;; Se ha creado con CLIPS un simulador de una sociedad (inspirado en el juego 'Los Sims')
+;; donde los componentes de esta tienen una identidad, 
+;; necesidades básicas, dinero, habilidades y trabajo.
+
+;;https://github.com/hsmfawaz/Chat-Bot-Using-python-and-ClIPS
+;;Chat Bot Using python and ClIPS
+
+;;https://github.com/yehan-chang/clips_recommender_system
+;;BTO Recommender System using CLIPS and python

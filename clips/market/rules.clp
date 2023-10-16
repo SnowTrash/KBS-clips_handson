@@ -7,7 +7,6 @@
    =>
    (printout t ?name " no ha comprado... nada!" crlf))
 
-
 ;;Define a rule for finding which products have been bought
 
 (defrule prods-bought
@@ -16,7 +15,6 @@
    (product (part-number ?part) (name ?pn))
    =>
    (printout t ?pn " was bought " crlf))
-
 
 ;;Define a rule for finding which products have been bought AND their quantity
 
@@ -53,7 +51,7 @@
                    (not (order (order-number ?order) (customer-id ?cid)))
 =>
 (assert (text-customer ?name ?phone "tienes 25% desc prox compra" crlf))
-(printout t ?name " 3313073905 tienes 25% desc prox compra msj "))
+(printout t ?name ?phone "  tienes 25% desc prox compra msj "))
 
 
 ;; Define a rule for calling  custormers who have not bought ...
@@ -61,9 +59,11 @@
                    (not (order (order-number ?order) (customer-id ?cid)))
 =>
 (assert (call-customer ?name ?phone "tienes 25% desc prox compra" crlf))
-(printout t ?name " 3313073905 tienes 25% desc prox compra llamada" crlf))
+(printout t ?name ?phone " tienes 25% desc prox compra llamada" crlf))
 
-
-
-
-
+;; No te pierdas estas ventas
+(defrule upcoming-sales-notification
+   (customer (customer-id ?id) (name ?cn) (phone ?phone))
+   =>
+   (assert (text-customer ?cn ?phone "Don't miss our upcoming sale this weekend. Great discounts await you!" crlf))
+   (printout t ?cn " (" ?phone ") Don't miss our upcoming sale this weekend. Great discounts await you!" crlf))
