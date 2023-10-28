@@ -22,8 +22,11 @@
 ;; (load ../KBS-clips_handson/clips/market/facts.clp)
 ;; (load ../KBS-clips_handson/clips/market/rules.clp)
 
-;; found this next projects and maybe deserve a look
+;;Libreria para integrar python y CLIPS
+;;https://github.com/noxdafox/clipspy
 
+
+;; this next projects deserve a look
 ;; https://github.com/ireneguerra/clipspy
 ;; Se ha creado con CLIPS un simulador de una sociedad (inspirado en el juego 'Los Sims')
 ;; donde los componentes de esta tienen una identidad, 

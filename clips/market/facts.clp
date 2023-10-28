@@ -1,3 +1,5 @@
+
+;;Definimos los hechos, en este caso, productos y clientes variados
 (deffacts products
   (product (part-number 1234) (name "USBMem") (category "storage") (price 199.99))
   (product (part-number 2341) (name "Amplifier") (category "electronics") (price 399.99))
@@ -36,6 +38,7 @@
   (customer (customer-id 123) (name "Elizabeth") (address "456 Elm St") (phone 331222333) (last-purchase-date "09/28/2023"))
 )
 
+          ;;Aqui definimos lo que los clientes ordenaron, lo matcheamos
 (deffacts orders
   (order (order-number 300) (customer-id 102))
   (order (order-number 301) (customer-id 103))
@@ -61,6 +64,9 @@
   (order (order-number 321) (customer-id 123))
 )
 
+
+          ;; Aqui se listan los items comprados, se debe modificar y agregar una fecha
+          ;; para calcular la ultima compra
 (deffacts items-list
   (line-item (order-number 300) (customer-id 102) (part-number 1234))
   (line-item (order-number 301) (customer-id 103) (part-number 2341) (quantity 10))
@@ -70,3 +76,10 @@
   ; Add line items for other orders as needed
 )
 
+
+
+;; Aqui se hace la manipulacion de fechiyas
+(deffacts drivers
+   (driver (name "Daniel Silva") (dateBorn "1985-03-04"))
+   (driver (name "Carlos Santos") (dateBorn "2000-03-04")))
+   
