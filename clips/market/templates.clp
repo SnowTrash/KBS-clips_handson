@@ -1,81 +1,118 @@
-;; Definimos las plantillas para:
-             ;;cliente
+                           ;; Definimos las plantillas;
+;cliente
 (deftemplate customer
   (slot customer-id)
   (multislot name)
   (multislot address)
   (slot phone)
-  (slot last-purchase-date)
-  (multislot email)
-  (slot referral-count)
-  (slot reviewed-products)
-  (multislot recommended-products)
+  (slot register-date)
 )
-             ;;producto
+
+;membresia
+(deftemplate membership
+  (slot customer-id)
+  (multislot name)
+  (slot level)
+  (slot points)
+  (slot cp-typo)
+  (slot cupon-buy)
+  (slot refered-by)
+  (slot invited)
+)
+
+;producto
 (deftemplate product
   (slot part-number)
   (slot name)
   (slot category)
   (slot price)
 )
-             ;;Orden/Ticket
+
+;Orden/Ticket
 (deftemplate order
   (slot order-number)
   (slot customer-id)
+  (slot purchase-date)
+  (slot total)
+  (slot discount)
 )
-             ;;Producto/fila
+
+;Producto/fila(una orden tiene muchas filas)
 (deftemplate line-item
   (slot order-number)
   (slot part-number)
   (slot customer-id)
   (slot quantity (default 1))
 )
-             ;; Oferta de descuento
+
+
+
+;; Conductores para pruebas de fecha 
+(deftemplate driver
+   (slot name)
+   (slot dateBorn))
+
+;; Aqui se definira la plantilla de codigo postal
+;; Se espera generar una regla
+(deftemplate postal-code
+   (slot code)
+   (slot group))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
+
+;; Aqui comienzan las plantillas de las reglas creadas
+             ;; mensaje para ofrecer descuento 
 (deftemplate discount-offer
   (multislot customer-name)
   (slot customer-phone)
   (multislot message)
+  (slot purchase-date)
 )
-             ;; Recompensa loyalty
+
+; Recompensa loyalty 
 (deftemplate loyalty-reward
   (multislot customer-name)
   (slot customer-phone)
   (multislot message)
 )
-             ;; Oferta de cumpleaños 
+
+; Oferta de cumpleaños
 (deftemplate birthday-offer
   (multislot customer-name)
   (slot customer-phone)
   (multislot message)
 )
-             ;; Descuento en una categoria(si es mas del 75% de la compra) pensada para mayoristas
+
+; 5 .- Descuento por departamento 
 (deftemplate category-discount-offer
   (multislot customer-name)
   (slot customer-phone)
   (multislot message)
 )
-             ;; Descuento Total si no es arriba de un tanto (Para que no choque la regla superior)
+
+; 7 ?? 
 (deftemplate total-purchase-discount-offer
   (multislot customer-name)
   (slot customer-phone)
   (multislot message)
 )
-            ;; Jalate a un compa
+
+;; Promocion
 (deftemplate referral-discount-offer
   (multislot customer-name)
   (slot customer-phone)
   (multislot message)
+  (slot level)
+  (slot n-recomendados)
 )
 
 
-;; Conductores y pruebas de fecha 
-
-(deftemplate driver
-   (slot name)
-   (slot dateBorn))
 
 
-;; Definimos una clase para las fechas
+
+;; FUNCIONES PARA FECHAS
+;; Definimos funciones que nos ayudan a manipular fechas
 (deffunction current-date ()
    (bind ?lt (local-time))
    (format nil "%04d-%02d-%02d" (nth$ 1 ?lt) (nth$ 2 ?lt) (nth$ 3 ?lt)))
@@ -85,9 +122,6 @@
    (if (= (mod ?year 100) 0) then (return FALSE))
    (if (= (mod ?year 4) 0) then (return TRUE))
    (return FALSE))
-
-;;(defglobal ?*days-before-month* =           (create$ 0 31 59 90 120 151 181 212 243 273 304 334))
-;;(defglobal ?*days-before-month-leap-year* = (create$ 0 31 60 91 121 152 182 213 244 274 305 335))
 
 
 (deffunction days-from-year-begin (?date)
