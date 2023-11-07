@@ -17,14 +17,24 @@
 
     ;; Para usar fechas debemos definir los siguientes hechos globales
 
-;;(defglobal ?*days-before-month* =           (create$ 0 31 59 90 120 151 181 212 243 273 304 334))
-;;(defglobal ?*days-before-month-leap-year* = (create$ 0 31 60 91 121 152 182 213 244 274 305 335))
+;; (defglobal ?*days-before-month* =           (create$ 0 31 59 90 120 151 181 212 243 273 304 334))
+;; (defglobal ?*days-before-month-leap-year* = (create$ 0 31 60 91 121 152 182 213 244 274 305 335))
+
+    
+    ;; para usar los meses sin intereses
+;; (defglobal ?*meses-segun-nivel* = (create$ 48 24 18 12 6))
 
     ; y despues cargamos los archivos
 
 ;; (load ../KBS-clips_handson/clips/market/templates.clp)
 ;; (load ../KBS-clips_handson/clips/market/facts.clp)
 ;; (load ../KBS-clips_handson/clips/market/rules.clp)
+
+
+;   Podriamos aplicar modify al hecho del membership
+;       y actualizarla con la regla para
+;       actualizar la membresia
+
 
 ;; Las reglas corresponden a los diversos momentos de la campaña 
 
