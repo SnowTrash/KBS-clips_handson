@@ -51,8 +51,8 @@
 (deffacts level-updates
  (level-update (customer-id 101) (refered-by 0)    (level 1) (refered-friends 101))
  (level-update (customer-id 102) (refered-by 101)  (level 4) (refered-friends 5)  )
- (level-update (customer-id 103) (refered-by 101)  (level 3) (refered-friends 15) )
- (level-update (customer-id 104) (refered-by 101)  (level 2) (refered-friends 50) )
+ (level-update (customer-id 103) (refered-by 101)  (level 3) (refered-friends 16) )
+ (level-update (customer-id 104) (refered-by 101)  (level 2) (refered-friends 51) )
  (level-update (customer-id 105) (refered-by 101)  (level 5) (refered-friends 3)  )
  (level-update (customer-id 106) (refered-by 101)  (level 5) (refered-friends 2)  )
 )

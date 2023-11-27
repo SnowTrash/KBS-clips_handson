@@ -55,14 +55,13 @@
         ;;Publicitar a traves del cliente
 ;; Promoción
     ; 9.- Premio por recomendar (5,15,50,100)
-        ; 9.1- Premio por compartir en redes 
     ; 10.- Premio por membresias (3,6,12,50)
 
         ;; Clasificar los clientes
 ;; Segmentación
     ; 11.- Codigo postal 
     ; 12.- Mayorista,Personal
-    ; 13.- Compras con oferta-cupon(25%,50%,75%)
+    ; 13.- Compras con oferta-chupón(25%,50%,75%)
 
 
 ;;;;;;;;;;; DEFINIENDO CLIENTES Y REGLAS TRIGERED

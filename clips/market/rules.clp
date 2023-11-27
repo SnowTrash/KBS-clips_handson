@@ -58,7 +58,6 @@
    (printout t ?cn " bought more than 5 (" ?pn ") from dept: (" ?cat ")" crlf)
 )
 
-
 ;; Integrar una regla que premie si se compra en menos de un intervalo de tiempo
 ;; 
 ;; Define a rule for rewarding customer loyalty based on their last purchase
@@ -197,7 +196,6 @@
   (printout t "Tested value -> "(dias-de-diferencia (current-date) ?date) crlf)
 )
 
-
 ; 6.- Meses sin intereses basado en puntaje (6,12,18,24)
 (defrule levels_credits
   (customer (customer-id ?ci) (name ?quien))
@@ -222,3 +220,35 @@
 )
 
 ; 8.- Puntos por cada producto sobre 5 productos
+
+; 9.- Premio por recomendar (5,15,50,100)
+(defrule recomended-5-friends
+   (customer (customer-id ?id) (name ?cn))
+   (level-update (customer-id ?id) (refered-friends ?rf&:(> ?rf 100)))
+   =>
+   (printout t ?cn " recomendaste mas de 100 personas" ?cn " -> recibe un oso grande de pelushe" crlf)
+)
+
+(defrule recomended-15-friends
+   (customer (customer-id ?id) (name ?cn))
+   (level-update (customer-id ?id) (refered-friends ?rf&:(> ?rf 50)))
+   (test (< ?rf 100) )
+   =>
+   (printout t ?cn " recomendaste mas de 50 personas" ?cn " -> recibe un oso chiquillo de pelushe" crlf)
+)
+
+(defrule recomended-50-friends
+   (customer (customer-id ?id) (name ?cn))
+   (level-update (customer-id ?id) (refered-friends ?rf&:(> ?rf 15)))
+   (test (< ?rf 50) )
+   =>
+   (printout t ?cn " recomendaste mas de 15 personas" ?cn " -> recibe un oso llaver de pelushe" crlf)
+)
+
+
+;; 11 Clasificar por codigo postal
+
+
+;; 12 mayorista o personal en sus compras
+
+;; 13 relacion compras con/sin oferta
