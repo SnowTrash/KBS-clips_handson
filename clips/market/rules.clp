@@ -48,7 +48,7 @@
    (printout t"+1000dlls buought products (" (* ?q ?cost) ")" ?cn " obtienes 10% en puntos (" (* ?q ?cost .10) ")"crlf)
 )
 
-; 4 .- Define a rule for finding those customers who bought more than 5 products
+; 4 .- Define a rule for finding those customers who bought more than 5 products from one department
 (defrule cust-5-prods
    (customer (customer-id ?id) (name ?cn))
    (order (order-number ?order) (customer-id ?id))
@@ -190,9 +190,18 @@
 (defrule buy_10days
   (customer (customer-id ?ci) (name ?quien))
   (order (customer-id ?ci) (order-number ?on) (purchase-date ?date)) 
-  (test (< (dias-de-diferencia (current-date) ?date) 15))
+  (test (< (abs(dias-de-diferencia (current-date) ?date)) 15))
   =>
   (printout t " < 15 dias entre hoy y la venta "?quien " - id:" ?ci " - #order: "?on "  del: " ?date  crlf)
+  (printout t "Tested value -> "(dias-de-diferencia (current-date) ?date) crlf)
+)
+
+(defrule buy_10mdays
+  (customer (customer-id ?ci) (name ?quien))
+  (order (customer-id ?ci) (order-number ?on) (purchase-date ?date)) 
+  (test (> (abs(dias-de-diferencia (current-date) ?date)) 15))
+  =>
+  (printout t " > 15 dias entre hoy y la venta "?quien " - id:" ?ci " - #order: "?on "  del: " ?date  crlf)
   (printout t "Tested value -> "(dias-de-diferencia (current-date) ?date) crlf)
 )
 
@@ -247,7 +256,6 @@
 
 
 ;; 11 Clasificar por codigo postal
-
 
 ;; 12 mayorista o personal en sus compras
 
