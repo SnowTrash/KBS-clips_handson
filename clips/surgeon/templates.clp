@@ -1,22 +1,24 @@
 ; Personas que intervienen
 (deftemplate medico
+  (multislot ID-medico)
   (multislot rol)
   (slot cirugias-hoy)
   (multislot nombre)
-  (slot ID-medico)
   (slot contaminado)
-  (slot sleeped_hr)
-  (slot mano_izq)
-  (slot mano_der)
+  (slot sleeped-hr)
+  (multislot mano-izq)
+  (multislot mano-der)
 )
 
 ; Instrumentos
 (deftemplate instrumento
-  (multislot customer-name)
+  (multislot nombre)
+  (multislot composicion)
   (multislot forma)
+  (multislot funcion)
   (multislot usos)
-  (slot ocupado)
-  (slot mano)
+  (multislot ocupado)
+  (multislot mano)
 )
 
 ; paciente
@@ -34,11 +36,11 @@
 ;cirugia
 (deftemplate cirugia
   (multislot ID-cirugia)
-  (multislot nombre/procedimiento)
+  (multislot nombre-procedimiento)
   (slot post-op-days)
   (slot area)
   (slot horas-aprox)
-  (slot tipo)
+  (multislot tipo)
   ; permimtidas a,b,c ([a1,a2,a3],b1...)
 
 )

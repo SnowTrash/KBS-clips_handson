@@ -1,3 +1,13 @@
+# Run it
+
+Para correr el programa cargamos los archivos dentro de clips
+(load ../KBS-clips_handson/clips/surgeon/templates.clp)
+(load ../KBS-clips_handson/clips/surgeon/facts.clp)
+(load ../KBS-clips_handson/clips/surgeon/rules.clp)
+(reset)
+(run) ---->
+ (: 
+
 # Surgeon - Agent KBS
 
 Para comenzar a trabajar con ello debemos definir 
@@ -34,6 +44,15 @@ o sexo de la persona a intervenir y no el paadecimiento directamente.
 
 
 1.- un proveedor de atención médica tomará su historia clínica y realizará un examen físico. Necesitará imágenes de su fémur, probablemente con una radiografía o tomografía computarizada (TC)., Coméntele a su proveedor de atención médica sobre todos los medicamentos que toma, incluidos los medicamentos de venta libre como la aspirina. Además, hágale saber la última vez que comió
+
+• Las enfermedades concomitantes.
+• Alergia a anestésicos locales.
+• Alteraciones de la coagulación.
+• Antecedentes de cicatrización queloide o hipertrófica.
+Trastornos circulatorios, inmunodeficiencias, hepatitis aguda o
+crónica.
+• Información sobre el procedimiento quirúrgico.
+• Obtener el consentimiento del paciente.
 
 
 ## Cirugia
@@ -106,20 +125,48 @@ estáticos, aunque el acceso o interacción con un agente estático
 puede estar mediado por la acción de un agente dinámico, un cirujano impide
 que la otro tenga el instrumento o material médico porque lo está utilizando.
 
-Los pasos básicos relacionados al paciente son:
 
-desinfectar
-anestesiar
-estabilizar signos vitales 
+Los principales agentes en la intervención son:
 
-comenzar intervencion
-mantener estables signos vitales
-intrumental, procedimientos y comunicaciones
-mantener estables los signos vitales
-concluir intervencion
+- Cirujano principal
+- Cirujano auxiliar
+- Anestesista
+- Enfermera circulante
+- Enfermero instrumentista
 
-cuidados post-operatorios
 
+El instrumental medico puede ser:
+			(usos)
+	Básico o Especializado
+
+hecho de(composicion):
+- Acero inoxidable
+- Titanio
+- Vitalio
+- Otros metales
+
+con forma distinta:
+
+ - De un solo cuerpo
+ - Articulados
+ - Con cierre
+ - Con forceps
+ - De fibra
+ 
+y su función puede ser de:
+
+ - Diéresis o corte.
+ - Separación
+ - Aprehensión 
+ - Síntesis
+ - Drenaje 
+
+
+Tijeras:
+Se debe disponer de unas tijeras
+de corte (de Mayo) curvas de punta roma, de 14 cm de largo, y de unas
+tijeras de disección (de Metzembaum) curvas de punta roma, de 11,5
+cm de largo.
 
 
 ### Referencias web
@@ -146,7 +193,7 @@ https://campus.sanofi.es/dam/jcr:666e26f3-42b7-48d1-8aae-73628756ea8f/atlas_ch07
 La cirugía de reducción abierta y fijación interna (ORIF) Folleto informativo
 https://intermountainhealthcare.org/ckr-ext/Dcmnt?ncid=521422285
 
-	(mi estomaguito no aguantó xd)
-Manual de Cirugía(Universidad de los Andes - 2016) : Joaquín,Krystel,Felipe,Rolando.
-Manual Práctico de cirugía menor - Grupo de Cirugía menor y dermatológica.
-Introducción a la cirugía general (Ediciones MAWIL - 2020) https://doi.org/10.26820/978-9942-826-33-6
+
+[1]Manual de Cirugía(Universidad de los Andes - 2016) : Joaquín,Krystel,Felipe,Rolando.
+[2]Manual Práctico de cirugía menor - Grupo de Cirugía menor y dermatológica.
+[3]Introducción a la cirugía general (Ediciones MAWIL - 2020) https://doi.org/10.26820/978-9942-826-33-6
