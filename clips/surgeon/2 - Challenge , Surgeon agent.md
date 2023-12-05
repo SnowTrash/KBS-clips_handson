@@ -3,10 +3,9 @@
 Para correr el programa cargamos los archivos dentro de clips
 (load ../KBS-clips_handson/clips/surgeon/templates.clp)
 (load ../KBS-clips_handson/clips/surgeon/facts.clp)
-(load ../KBS-clips_handson/clips/surgeon/rules.clp)
+(load ../KBS-clips_handson/clips/surgeon/rules.clp) 
 (reset)
-(run) ---->
- (: 
+(run) ----> (: 
 
 # Surgeon - Agent KBS
 
@@ -170,7 +169,7 @@ cm de largo.
 
 
 ### Referencias web
-#### 	1.- [ ]
+#### 	1.- [Fractura del femur]
 
 Reducción abierta con fijación interna para la fractura del fémur
 https://carefirst.staywellsolutionsonline.com/spanish/TestsProcedures/135,334es

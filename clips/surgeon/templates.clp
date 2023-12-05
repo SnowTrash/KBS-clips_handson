@@ -18,7 +18,6 @@
   (multislot funcion)
   (multislot usos)
   (multislot ocupado)
-  (multislot mano)
 )
 
 ; paciente
@@ -30,7 +29,6 @@
   (slot peso)
   (slot altura)
   (slot IMC)
-  (slot ID-cirugia)
 )
 
 ;cirugia
@@ -41,13 +39,30 @@
   (slot area)
   (slot horas-aprox)
   (multislot tipo)
-  ; permimtidas a,b,c ([a1,a2,a3],b1...)
+  ; mayor,menor,ambulatoria.
 
 )
 
 ; cirugia-paciente-cirujano
 (deftemplate intervencion
-  (multislot ID)
+  (multislot ID-intervencion)
+  (multislot ID-cirugia)
+  (multislot ID-paciente)
+  (multislot ID-cirujano-principal)
+  (multislot ID-cirujano-auxiliar)
+  (multislot ID-enfermero-circulante)
+  (multislot ID-enfermera-instrumentista)
+  (multislot ID-anestesista)
   (multislot abordaje)
   (slot estado-actual)
 )
+
+; Acciones para gestionar la interacción
+(deftemplate acciones
+  (multislot ID-intervencion)
+  (multislot ID-agente-A)
+  (multislot ID-agente-B)
+  (slot numero-accion)
+  (multislot descripcion)
+)
+
