@@ -66,3 +66,25 @@
   (multislot descripcion)
 )
 
+
+
+; (deftemplate student
+;     (slot name (type SYMBOL) (default ?NONE))
+;     (slot grade (type SYMBOL) (default C) (allowed-symbols A B C D))
+;     (slot graduated (type SYMBOL) (default no) (allowed-symbols yes no)))
+; CLIPS> 
+; (deffacts insert-facts
+;     (student (name George) (grade A))
+;     (student (name Nick) (grade C))
+;     (student (name Bob))
+;     (student (name Mary) (grade B)))
+; CLIPS> 
+; (defrule rule-1
+;    ?s <- (student (grade A|B) (name ?n) (graduated ~yes))
+;    =>
+;    (modify ?s (graduated yes))
+;    (printout t "Congratulations " ?n "!" crlf))
+; CLIPS> (reset)
+; CLIPS> (run)
+; Congratulations Mary!
+; Congratulations George!

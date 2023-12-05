@@ -33,17 +33,16 @@
 ; Cirugías
 (deffacts recipes
 ;(cirugia (multislot ID-cirugia)(multislot nombre/procedimiento)(slot post-op-days)(slot area)(slot horas-aprox) (slot tipo))
-  (cirugia (ID-cirugia "666")(nombre-procedimiento "Apendicectomia")(post-op-days 14)(area "V")(horas-aprox 4) (tipo "mayor ambulatoria"))
+  (cirugia (ID-cirugia "666")(nombre-procedimiento "Herniorrafía inguinal clásica")(post-op-days 14)(area "V")(horas-aprox 4) (tipo "mayor-ambulatoria"))
   (cirugia (ID-cirugia "777")(nombre-procedimiento "Reducción abierta de fractura con fijación interna , femur")(post-op-days 60)(area "L")(horas-aprox 10) (tipo "mayor"))
-  (cirugia (ID-cirugia "778")(nombre-procedimiento "Reducción abierta de fractura con fijación interna, húmero")(post-op-days 50)(area "A")(horas-aprox 12) (tipo "mayor ambulatoria"))
+  (cirugia (ID-cirugia "778")(nombre-procedimiento "Herniorrafía inguinal")(post-op-days 50)(area "V")(horas-aprox 12) (tipo "menor"))
 )
 
 ; Intervenciones
 (deffacts kissinger
 
-  (intervencion (ID-intervencion "IN-01")(ID-cirugia "666")(ID-paciente "0001")(ID-cirujano-principal "ID1")(ID-cirujano-auxiliar "ID2")(ID-enfermero-circulante "ID4")(ID-enfermera-instrumentista "ID5")(ID-anestesista "ID3")(abordaje "sin-definir") (estado-actual "genesis"))
-  
+  (intervencion (ID-intervencion "IN-01")(ID-cirugia "666")(ID-paciente "0001")(ID-cirujano-principal "ID1")(ID-cirujano-auxiliar "ID2")(ID-enfermero-circulante "ID4")(ID-enfermera-instrumentista "ID5")(ID-anestesista "ID3")(abordaje "sin-definir")(estado-actual "genesis"))
   (intervencion (ID-intervencion "IN-02")(ID-cirugia "777")(ID-paciente "0003")(ID-cirujano-principal "ID1")(ID-cirujano-auxiliar "ID2")(ID-enfermero-circulante "ID4")(ID-enfermera-instrumentista "ID5")(ID-anestesista "ID3")(abordaje "sin-definir")(estado-actual "genesis"))
   (intervencion (ID-intervencion "IN-03")(ID-cirugia "778")(ID-paciente "0003")(ID-cirujano-principal "ID1")(ID-cirujano-auxiliar "ID2")(ID-enfermero-circulante "ID4")(ID-enfermera-instrumentista "ID5")(ID-anestesista "ID3")(abordaje "sin-definir")(estado-actual "genesis"))
-  
+
 )
