@@ -29,6 +29,7 @@
   (slot peso)
   (slot altura)
   (slot IMC)
+  (multislot estado)
 )
 
 ;cirugia

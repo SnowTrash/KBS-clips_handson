@@ -24,10 +24,10 @@
 ; Pacientes
 ( deffacts pacientes
 ;(paciente (slot ID-paciente) (slot cirugias-hoy) (multislot nombre) (slot pulso) (slot peso) (slot altura) (slot IMC))
-  (paciente (ID-paciente "0001") (cirugias-hoy 0) (nombre "javier milei") (pulso 90) (peso 95) (altura 169) (IMC 23.4) )
-  (paciente (ID-paciente "0002") (cirugias-hoy 0) (nombre "charles xavier") (pulso 84) (peso 95) (altura 169) (IMC 23.4) )
-  (paciente (ID-paciente "0003") (cirugias-hoy 2) (nombre "bashir folman") (pulso 120) (peso 80) (altura 180) (IMC 22.1) )
-  (paciente (ID-paciente "0004") (cirugias-hoy 5) (nombre "hisashi ouchi") (pulso 74) (peso 85) (altura 175) (IMC 23.1) )
+  (paciente (ID-paciente "0001") (cirugias-hoy 0) (nombre "javier milei") (pulso 90) (peso 95) (altura 169) (IMC 23.4)  (estado "null"))
+  (paciente (ID-paciente "0002") (cirugias-hoy 0) (nombre "charles xavier") (pulso 84) (peso 95) (altura 169) (IMC 23.4)(estado "null"))
+  (paciente (ID-paciente "0003") (cirugias-hoy 2) (nombre "bashir folman") (pulso 120) (peso 80) (altura 180) (IMC 22.1)(estado "null"))
+  (paciente (ID-paciente "0004") (cirugias-hoy 5) (nombre "hisashi ouchi") (pulso 74) (peso 85) (altura 175) (IMC 23.1) (estado "null"))
 )
 
 ; Cirugías

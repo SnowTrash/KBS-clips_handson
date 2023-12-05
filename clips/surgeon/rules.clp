@@ -1,31 +1,49 @@
+; estas primeras reglas deberian ser, consentimiento y revisar que no corre peligro el paciente
+; -1?xd
 ; si - paciente_ingresado => Prepararlo para la cirugia
 (defrule preparar-paciente
-  (paciente (ID-paciente ?idpa) (pulso ?pu&:(> ?pu 85)) (nombre ?name))
+  ?x <- (paciente (ID-paciente ?idpa) (pulso ?pu&:(> ?pu 85)) (nombre ?name))
   =>
-  (printout t  ?idpa ?name " es un paciente con pulsaciones > 85 , estable para cirugia " crlf)
+  (modify ?x (estado "estable"))
 )
-
-; se toman las intervenciones definidas en facts, probaremos con una sola
+; Accion 0
+; se toman las intervenciones definidas en facts(con el estado definido como genesis/creación), probaremos con una sola
 (defrule generar-intervencion
-  (intervencion (ID-intervencion ?idi) (ID-paciente ?idp) (ID-cirugia ?idc) (abordaje ?lines)(estado-actual ?st) )
-  (paciente (ID-paciente ?idp) (nombre ?name))
+  ?x <- (intervencion (ID-intervencion ?idi) (ID-paciente ?idp) (ID-cirugia ?idc) (abordaje ?lines)(estado-actual ?st) )
+  (paciente (ID-paciente ?idp) (nombre ?name) (estado ~"malito"|"critico"))
   (cirugia (ID-cirugia ?idc) (nombre-procedimiento ?np))
   (test (eq "genesis" ?st))
   =>
-  (assert (acciones (ID-intervencion ?idi) (ID-agente-A "Paciente") (ID-agente-B "Hospital") (numero-accion 0) (descripcion "Se asignaran medicos a :" ?name " -> para su proxima " ?np crlf) ))
-  (printout t " iniciando proceso... " ?st  crlf)
+  (modify ?x (estado-actual "anestesia"))
+  (assert (acciones (ID-intervencion ?idi) (ID-agente-A ?idp) (ID-agente-B "Hospital") (numero-accion 0) (descripcion "Se asignaran medicos a :" ?name " -> para su proxima " ?np crlf) ))
+  (printout t " isertando proceso 0... " ?st  crlf)
 )
 
-; lavarlos a todos
+; Primera accion
 (defrule lavarlos-all
   (acciones (ID-intervencion ?idi) (numero-accion ?an&:(eq ?an 0)))
-  (intervencion (ID-intervencion ?idi)(ID-cirugia ?idc)(ID-paciente ?idp)(ID-cirujano-principal ?idcp)(ID-cirujano-auxiliar ?idcx)(ID-enfermero-circulante ?idenc)(ID-enfermera-instrumentista ?ideni)(ID-anestesista ?idan)(abordaje ?abord) (estado-actual ?st))
+  ?x <-(intervencion (ID-intervencion ?idi)(ID-cirugia ?idc)(ID-paciente ?idp)(ID-cirujano-principal ?idcp)(ID-cirujano-auxiliar ?idcx)(ID-enfermero-circulante ?idenc)(ID-enfermera-instrumentista ?ideni)(ID-anestesista ?idan)(abordaje ?abord) (estado-actual ?st))
+  ?a <- (medico (ID-medico ?idcp))
+  ?b <- (medico (ID-medico ?idcx))
+  ?c <- (medico (ID-medico ?idenc))
+  ?d <- (medico (ID-medico ?ideni))
+  ?e <- (medico (ID-medico ?idan))
   =>
-  (assert (acciones (ID-intervencion ?idi) (ID-agente-A "Medicos") (ID-agente-B "Paciente") (numero-accion (+ ?an 1)) (descripcion "accion +1 realizada?? lavandolos") ))
+  (modify ?x (abordaje "pre-seleccionando-abordaje"))
+  (modify ?a (contaminado 0)(mano-izq "guantes") (mano-der "guantes"))
+  (modify ?b (contaminado 0)(mano-izq "guantes") (mano-der "guantes"))
+  (modify ?c (contaminado 0)(mano-izq "guantes") (mano-der "guantes"))
+  (modify ?d (contaminado 0)(mano-izq "guantes") (mano-der "guantes"))
+  (modify ?e (contaminado 0)(mano-izq "guantes") (mano-der "guantes"))
+  (assert (acciones (ID-intervencion ?idi) (ID-agente-A ?idp) (ID-agente-B "Medicos") (numero-accion (+ ?an 1)) (descripcion "todos los involucrados se limpian") ))
 )
-; tunel de viento
-; ingresar al quirofano.
+; Para lograr una seleccion de abordaje se debe crear una regla que modifique los
+; abordajes dependiendo algo?
+; se creara otra relacion entre abordajes y estados
 
+
+; ingresar al quirofano.
+; Segunda acción
 
 ; Anestesiarlo segun el área previamente acordada
     ;(TODO para reglas mas especificas leer los manuales y agregarlas)
@@ -57,7 +75,6 @@
   (printout t " Friega con hielo en ---> " ?ar  crlf)
 )
 
-
 ; En el caso de la fractura de femur mediante el primer abordaje.
 ; la extremidad inferior izquierda de un paciente antes de la reducción abierta y
 ; fijación interna de una fractura de la meseta tibial. La extremidad inferior se ha colocado sobre un paño estéril y se ha
@@ -84,18 +101,32 @@
 
 ; Incisiones
 ; Arreglada (acomodar los huesos parejones)
-; Sutura
+; Suturas
 
-; Haremos una descripcion mas simple para las otras 9
-
-
+;; En el caso de la Hernia se seguirá otro tipo de marcado, por lo que quizá deba generalizar ese paso
 
 
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Funciones;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; EJEMPLO EJEMPLO EJEMPLO EJEMPLO EJEMPLO EJEMPLO EJEMPLO EJEMPLO EJEMPLO
+; (defrule rule-1                                                  EJEMPLO
+;    ?s <- (student (grade A|B) (name ?n) (graduated ~yes))        EJEMPLO
+;    =>                                                            EJEMPLO
+;    (modify ?s (graduated yes))                                   EJEMPLO
+;    (printout t "Congratulations " ?n "!" crlf))                  EJEMPLO
+;; EJEMPLO EJEMPLO EJEMPLO EJEMPLO EJEMPLO EJEMPLO EJEMPLO EJEMPLO EJEMPLO
 
 ; NO - paciente_NEGADO => estabilizarlo y reprogramar la cirugia
 (defrule devolver-paciente
-  (paciente (ID-paciente ?idpa) (pulso ?pu&:(< ?pu 85)) (nombre ?name) )
+  ?x <- (paciente (ID-paciente ?idpa) (pulso ?pu&:(< ?pu 85)) (nombre ?name) (estado ~"malito"))
   =>
+  (modify ?x (estado "malito"))
   (printout t  ?idpa ?name " pacientes con pulso menor a 85 , cancelar la cirugia "  crlf)
 )
+
+;como puedo imprimir solo los asserts hechos de un paciente especifico?

@@ -3,7 +3,7 @@
 Para correr el programa cargamos los archivos dentro de clips
 - (load ../KBS-clips_handson/clips/surgeon/templates.clp)
 - (load ../KBS-clips_handson/clips/surgeon/facts.clp)
-- (load ../KBS-clips_handson/clips/surgeon/rules.clp) 
+- (load ../KBS-clips_handson/clips/surgeon/rules.clp)
 - (reset)
 - (run) 
 - (: enjoy 
@@ -73,6 +73,26 @@ decidí buscar información en internet para completar al menos un par de interv
 
 En el manual de la Universidad de los Andes aparecen diversas intervenciónes quirúrgicás con sus respectivas sintomatologías y pruebas pre-operatorias sugeridas para su diagnóstico y descripciones acompañadas de imagenes para ilustrar los distintos abordajes de las intervenciones quirurgicas.
 
+Los siguientes estados corresponden al paciente:
+
+1. Estable (operable , intervención óptima)
+2. Malito (inestable, operación en capacidad de posponerse)
+3. Crítico (muy inestable, alta probabilidad de intervención)
+4. Mortal (operable , invervención situacional)
+
+La siguiente lista representa los estados(values) posibles del campo (estado-actual) de la intervención:
+
+1. genesis (se asigna manualmente un ID de intervención y se relaciona una Cirugía, paciente y un equipo de personas para crear la intervención o el ambiente de interacción)
+2. anestesia
+3. posicionar
+4. abordaje
+5. incisiones
+6. proceso?
+7. sutura
+
+
+Para poder definir el aboordaje de forma correcta se crearan asociaciones a los abordajes posibles para una operación con las situaciones donde se debería usar. (y una descripcion>?)
+
 ## Top 9 cirugías en México
 
 ### 1.- Reducción abierta de fractura con fijación interna, fémur.
@@ -117,7 +137,6 @@ esta imagen de la página 408 generó la siguiente nota:
 ![Conducto inguinal](../../images/hernia.png)
 
 	con esto me doy una idea de las 4 pinzas utilizadas para acceder y manipular los ligamentos y tendones involucrados en la cirugía
-
 
 ### En la página 411 se describen al menos 5 tipos de Hernioplastía y en la siguiente página las complicaciones de la cirugía
 
